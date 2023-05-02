@@ -2,7 +2,7 @@
 // if not logged in then redirect to login page
 session_start();
 if (!isset($_SESSION["user"])) {
-    // echo "<script>location='index1.php'</script>";
+    echo "<script>location='index1.php'</script>";
 }
 ?>
 <!DOCTYPE html>
