@@ -1,5 +1,5 @@
 <footer class="site-footer">
-            2020 &copy; PICK
+            2023 &copy; NDMS
         </footer>
         <!-- END: Footer-->
 

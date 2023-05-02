@@ -1,9 +1,13 @@
 <?php
 session_start();
 include 'database.php';
-$DocTitle = 'doc2'; 
-$Docmnt = db::getRecord("SELECT * FROM Documents WHERE DocTitle = '$DocTitle'");
-$id = $Docmnt["DocId"];
+
+$id = $_GET["status"];
+$Docmnt = db::getRecord("SELECT * FROM Documents WHERE DocId = '$id'");
+if($Docmnt == null){
+    header("Location: viewAllDocs.php");
+}
+$DocTitle = $Docmnt["DocTitle"];
 $metadata = db::getRecord("SELECT * FROM metadata WHERE DocId = '$id'");
 
 function formatSizeUnits($bytes)
@@ -76,13 +80,20 @@ $res = db::getRecord("SELECT * FROM Lookup WHERE Id = '$dt'");
                                 <h5 class="mb-0" style="margin-top:15px ;margin-left: 10px; margin-right: 50px; color: #4C75F2;"><?php echo 'Expiry Date: ' ?></h5>
                                 </div>
                                 <div class="row">
-                                <p class="mb-0" style="margin-top:10px ;margin-left: 80px; margin-right: 30px; color:#1E3D73"><?php echo $Docmnt["ExpiryDate"]; ?></p>
+                                <p class="mb-0" style="margin-top:10px ;margin-left: 80px; margin-right: 30px; color:#1E3D73"><?php 
+                                $edate = $Docmnt["expiryDate"];
+                                $newDate = date("d-m-Y", strtotime($edate));
+                                echo  $newDate; ?></p>
                                 </div>
                                 <div class="row">
                                 <h5 class="mb-0" style="margin-top:15px ;margin-left: 10px; margin-right: 50px; color: #4C75F2;"><?php echo 'Status: ' ?></h5>
                                 </div>
                                 <div class="row">
-                                <p class="mb-0" style="margin-top:10px ;margin-left: 80px; margin-right: 30px; color:#1E3D73"><?php echo $Docmnt["Status"]; ?></p>
+                                <p class="mb-0" style="margin-top:10px ;margin-left: 80px; margin-right: 30px; color:#1E3D73"><?php 
+                                $s = $Docmnt["Status"];
+                                $query = "SELECT l.Value FROM Lookup as l inner join Documents as d on d.[Status] = l.id where l.id = $s";
+                                $status = db::getRecord($query);
+                                echo $status['Value']; ?></p>
                                 </div>
                                 <div class="row">
                                 <h5 class="mb-0" style="margin-top:15px ;margin-left: 10px; margin-right: 50px; color: #4C75F2;"><?php echo 'Type: ' ?></h5>

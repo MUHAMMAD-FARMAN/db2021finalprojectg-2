@@ -2,7 +2,7 @@
 // if not logged in then redirect to login page
 session_start();
 if (!isset($_SESSION["user"])) {
-    echo "<script>location='index1.php'</script>";
+    // echo "<script>location='index1.php'</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -49,9 +49,9 @@ if (!isset($_SESSION["user"])) {
 <body id="main-container" class="default horizontal-menu">
 
     <!-- START: Pre Loader-->
-    <div class="se-pre-con">
+    <!-- <div class="se-pre-con">
         <div class="loader"></div>
-    </div>
+    </div> -->
     <!-- END: Pre Loader-->
 
     <!-- START: Header-->

@@ -78,6 +78,7 @@
                                 $s = $doc['Status'];
                                 $query = "SELECT l.Value FROM Lookup as l inner join Documents as d on d.[Status] = l.id where l.id = $s";
                                 $status = db::getRecord($query);
+                                
                                 $edate = $doc['expiryDate'];
                             ?>
                             <div class="document folder-documents">
@@ -116,9 +117,9 @@
                                     </div>
                                     <div class="line-h-1 h5">
 
-                                        <a class="text-success edit-document" href="docViewer.php" data-toggle=" modal"
+                                        <a class="text-success edit-document" href="docViewer.php?status=<?php echo $doc['DocId']?>" data-toggle=" modal"
                                             data-target="#"><i class="icon-eye"></i></a>
-                                        <a class="text-danger delete-document" href="#"><i class="icon-trash"></i></a>
+                                        <a class="text-danger delete-document" href="docViewer.php?status=<?php echo $doc['DocId']?>"><i class="icon-trash"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -138,7 +139,11 @@
 </main>
 <!-- END: Content-->
 
-
+<!-- <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const num = urlParams.get('num');
+  console.log(num);
+</script> -->
 
 <?php
     include 'footer.php';
