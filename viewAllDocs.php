@@ -1,10 +1,10 @@
 <?php
     include 'header.php';
     include 'database.php';
-    // session_start();
-    // $user = $_SESSION["BFormNo"];
+    session_start();
+    $user = $_SESSION["BFormNo"];
 
-    $query = "SELECT * from Documents as d inner join metaData as m on m.DocId = d.DocId where UserId = '00000-0000000-1' and IsDeleted = 0";
+    $query = "SELECT * from Documents as d inner join metaData as m on m.DocId = d.DocId where UserId = '$user' and IsDeleted = 0";
     $docs = db::getRecords($query);
     function formatSize($bytes)
     {
