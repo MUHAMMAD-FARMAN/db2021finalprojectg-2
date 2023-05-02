@@ -1,7 +1,24 @@
 <?php
     include 'header.php';
-?>
+    include 'database.php';
+    // session_start();
+    // $user = $_SESSION["BFormNo"];
+    $query = "SELECT * from Documents as d inner join metaData as m on m.DocId = d.DocId where UserId = '00000-0000000-1' and IsDeleted = 0";
+    $docs = db::getRecords($query);
+    function formatSize($bytes)
+    {
+        $units = array('B', 'KB', 'MB', 'GB', 'TB');
 
+        $i = 0;
+        while ($bytes >= 1024 && $i < count($units) - 1) {
+            $bytes /= 1024;
+            $i++;
+        }
+
+        return round($bytes, 2) . ' ' . $units[$i];
+    }
+    
+?>
 
 <!-- START: Main Content-->
 <main>
@@ -11,13 +28,13 @@
             <div class="col-12  align-self-center">
                 <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                     <div class="w-sm-100 mr-auto">
-                        <h4 class="mb-0">File Manager</h4>
+                        <h4 class="mb-0">View All Docs</h4>
                     </div>
 
                     <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
                         <li class="breadcrumb-item">Home</li>
                         <li class="breadcrumb-item">App</li>
-                        <li class="breadcrumb-item active"><a href="#">File Manager</a></li>
+                        <li class="breadcrumb-item active"><a href="#">View All Docs</a></li>
                     </ol>
                 </div>
             </div>
@@ -39,35 +56,6 @@
 
                     </div>
 
-                    <!-- <ul class="nav flex-column document-menu">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#" data-documenttype="document">
-                                <i class="icon-list"></i> All
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-documenttype="image-documents">
-                                <i class="icon-picture"></i> Images
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-documenttype="video-documents">
-                                <i class="icon-camrecorder"></i> Video
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-documenttype="folder-documents">
-                                <i class="icon-folder"></i> Folders
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-documenttype="file-documents">
-                                <i class="icon-docs"></i> Files
-                            </a>
-                        </li>
-
-                    </ul> -->
-
                 </div>
             </div>
             <div class="col-12 col-lg-10 mt-3 pl-lg-0">
@@ -82,31 +70,62 @@
                     <div class="card-body p-0">
 
                         <div class="documents list">
+
+                            <?php 
+                            
+                             foreach($docs as $doc){
+                                $size = formatSize($doc['FileSize']);
+                                $s = $doc['Status'];
+                                $query = "SELECT l.Value FROM Lookup as l inner join Documents as d on d.[Status] = l.id where l.id = $s";
+                                $status = db::getRecord($query);
+                                $edate = $doc['expiryDate'];
+                            ?>
                             <div class="document folder-documents">
                                 <div class="document-content">
                                     <div class="document-profile">
-                                        <i class="icon-folder"></i>
+                                        <i class="icon-picture"></i>
                                         <div class="document-info">
-                                            <p class="document-name mt-3">Product Images</p>
+                                            <p class="document-name mt-3">
+                                                <?php echo "<a style= 'userselec'>" . $doc['DocTitle'] . " </a>" ?>
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="document-email">
                                         <p class="mb-0 small">Size: </p>
-                                        <p class="user-email">59.5kb</p>
+                                        <p class="user-email">
+                                            <?php 
+                                            echo $size;
+                                            ?>
+                                        </p>
                                     </div>
 
+                                    <div class="document-email">
+                                        <p class="mb-0 small">Status: </p>
+                                        <p class="user-email">
+                                            <?php echo $status['Value']; ?></p>
+                                    </div>
                                     <div class="document-phone">
-                                        <p class="mb-0 small">Date Added: </p>
-                                        <p class="user-phone">29 June 2020</p>
+                                        <p class="mb-0 small">Expiry Date: </p>
+                                        <p class="user-phone">
+                                            <?php 
+                                            $newDate = date("d-m-Y", strtotime($edate));
+                                            echo  $newDate;
+                                            ?>
+
+                                        </p>
                                     </div>
                                     <div class="line-h-1 h5">
-                                        <a class="text-success edit-document" href="#" data-toggle="modal"
-                                            data-target="#"><i class="icon-pencil"></i></a>
+
+                                        <a class="text-success edit-document" href="docViewer.php" data-toggle=" modal"
+                                            data-target="#"><i class="icon-eye"></i></a>
                                         <a class="text-danger delete-document" href="#"><i class="icon-trash"></i></a>
                                     </div>
                                 </div>
                             </div>
 
+                            <?php
+                                }
+                            ?>
                         </div>
 
 
