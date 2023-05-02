@@ -3,6 +3,7 @@
     include 'database.php';
     // session_start();
     // $user = $_SESSION["BFormNo"];
+
     $query = "SELECT * from Documents as d inner join metaData as m on m.DocId = d.DocId where UserId = '00000-0000000-1' and IsDeleted = 0";
     $docs = db::getRecords($query);
     function formatSize($bytes)
@@ -119,7 +120,7 @@
 
                                         <a class="text-success edit-document" href="docViewer.php?status=<?php echo $doc['DocId']?>" data-toggle=" modal"
                                             data-target="#"><i class="icon-eye"></i></a>
-                                        <a class="text-danger delete-document" href="docViewer.php?status=<?php echo $doc['DocId']?>"><i class="icon-trash"></i></a>
+                                        <a class="text-danger delete-document" href="docDelLogic.php?status=<?php echo $doc['DocId']?>"><i class="icon-trash"></i></a>
                                     </div>
                                 </div>
                             </div>

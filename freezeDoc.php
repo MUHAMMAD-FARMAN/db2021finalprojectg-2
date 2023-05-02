@@ -1,5 +1,8 @@
 <?php
 include("header.php");
+session_start();
+$query = "SELECT DocTitle FROM Documents WHERE UserId = '" . $_SESSION['user'] . "'";
+$doc = db::getRecords($query);
 ?>
 <main>
     <div class="container-fluid site-width">
@@ -56,17 +59,30 @@ include("header.php");
                             </div>
 
                             <div class="card-body">
-                                <form>
+                                <form action="freezeDocLogic.php" method="POST">
                                     <div class="form-row ">
                                         <div class="form-group col-md-6">
                                             <label for="inputState">Select Document</label>
-                                            <select id="inputState" class="form-control">
+                                            <select id="inputState" name="DocTitle" class="form-control">
                                                 <option selected>Choose...</option>
-                                                <option>...</option>
+                                                <?php
+                                                foreach ($doc as $d) {
+                                                    echo "<option>" . $d['DocumentName'] . "</option>";
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary" type="submit">Freeze</button>
+                                    <button class="btn btn-primary" name="freezeDoc" type="submit">Freeze</button>
+                                    <?php
+                                    if (isset($_GET['status'])) {
+                                        if ($_GET['status'] == 1) {
+                                            echo "<p class='text-success'>Document has been freezed</p>";
+                                        } else if ($_GET['status'] == 2) {
+                                            echo "<p class='text-danger'>Document has not been freezed</p>";
+                                        }
+                                    }
+                                    ?>
                                 </form>
                             </div>
                         </div>

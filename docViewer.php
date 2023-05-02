@@ -30,6 +30,10 @@ $res = db::getRecord("SELECT * FROM Lookup WHERE Id = '$dt'");
 ?>
 
 <head>
+<meta charset="UTF-8">
+    <title><?php echo $DocTitle?></title>
+    <link rel="shortcut icon" href="dist/images/logo.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- START: Template CSS-->
     <link rel="stylesheet" href="dist/vendors/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="dist/vendors/jquery-ui/jquery-ui.min.css">
@@ -54,7 +58,7 @@ $res = db::getRecord("SELECT * FROM Lookup WHERE Id = '$dt'");
                         <div class="card">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h4 class="card-title"><?php echo $DocTitle; ?></h4>
-                                <button class="btn btn-primary float-right" style = "background-color:transparent; color:#4C75F2; border:none;">X</button>
+                                <button onclick="location.href='viewAllDocs.php'" class="btn btn-primary float-right" style = "background-color:transparent; color:#4C75F2; border:none;">X</button>
                             </div>
                             <div class="card-body d-flex" style="margin-bottom: auto">
                             <div class="col-md-3 ml-2" style="width: 200px; display: inline-block;">
