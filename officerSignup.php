@@ -93,6 +93,7 @@ $officerCategory = db::getRecords($query);
                                 </div>
                             <?php
                         }
+                        
                         if (isset($_GET["status"]) && $_GET["status"] == 2) {
                            ?>
                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
