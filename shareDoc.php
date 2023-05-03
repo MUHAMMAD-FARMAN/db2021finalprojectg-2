@@ -1,7 +1,12 @@
 <?php
 include("header.php");
 include("database.php");
-$sql = "SELECT DocTitle, DocumentCode FROM Documents";
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+}
+$id = $_SESSION['user'];
+$sql = "SELECT DocTitle, DocumentCode FROM Documents WHERE UserId = '$id'";
 $results = db::getRecords($sql);
 ?>
 <main>
