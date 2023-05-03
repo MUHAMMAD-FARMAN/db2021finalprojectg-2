@@ -47,9 +47,9 @@ if(!isset($_SESSION["user"]))
 
 <body id="main-container" class="default horizontal-menu">
  <!-- START: Pre Loader-->
-        <div class="se-pre-con">
+        <!-- <div class="se-pre-con">
             <div class="loader"></div>
-        </div>
+        </div> -->
         <!-- END: Pre Loader-->
 
         <!-- START: Header-->

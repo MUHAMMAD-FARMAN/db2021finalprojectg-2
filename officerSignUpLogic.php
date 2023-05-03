@@ -1,6 +1,7 @@
 <?php
 include ('database.php');
 include ('BL/VerificationOfficer.php');
+session_start();
 
 if(isset($_POST["officerSignUP"]))
 {
@@ -8,10 +9,9 @@ if(isset($_POST["officerSignUP"]))
     $city = $_POST["city"];
     $province = $_POST["province"];
     $category = $_POST["OC"];
+    $officerId = $_SESSION['user'];
 
-    $query1 = "SELECT MAX(officerId) AS Id FROM VerificationOfficer";
-    $officerId = db::getRecord($query1);
-    $officerId = $officerId["Id"] + 1;
+    
 
 
     

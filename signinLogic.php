@@ -1,5 +1,8 @@
 <?php
 include('database.php');
+// Get Id of OFFICER
+$query = "SELECT id FROM Lookup WHERE Category='USERROLE' and Value = 'OFFICER'";
+$OfficerId = db::getRecord($query);
 
 if(isset($_POST["signIN"]))
 {
@@ -31,7 +34,7 @@ if(isset($_POST["signIN"]))
             session_start();
             $_SESSION["user"] = $CNIC;
 
-            if($res["UserRole"]==5) //if user is a verification officer
+            if($res["UserRole"]==$OfficerId['id']) //if user is a verification officer
             {
                 $query1 = "SELECT verificationOfficerId, officerCategory from ApprovalApplications A JOIN VerificationOfficer V ON A.verificationOfficerId = V.officerId where A.personId='$CNIC'";
                 $res1 = db::getRecord($query1);

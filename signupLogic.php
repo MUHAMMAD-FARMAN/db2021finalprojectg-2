@@ -1,5 +1,9 @@
 <?php
 include ('database.php');
+// Get Id of OFFICER
+$query = "SELECT id FROM Lookup WHERE Category='USERROLE' and Value = 'OFFICER'";
+$OfficerId = db::getRecord($query);
+
 
 if(isset($_POST["signUP"]))
 {
@@ -51,7 +55,7 @@ if(isset($_POST["signUP"]))
         $res3 = db::insertRecord($query3);
 
         // if verification officer is signing up
-        if($role == 5)
+        if($role == $OfficerId['id'])
         {
             echo "<script>location='officerSignup.php'</script>";
         }
