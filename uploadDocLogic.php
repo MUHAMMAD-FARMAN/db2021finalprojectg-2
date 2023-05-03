@@ -19,10 +19,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         {
             $filename = $_POST["DocTitle"];
         }
+        //check file name already exist for user
+        $qry = "SELECT DocTitle FROM Documents WHERE DocTitle = '$filename' AND UserId = '$_SESSION[user]'";
+        $res = db::getRecords($qry);
+        if($res != null)
+        {
+            echo "<script>alert('File name already exist')</script>";
+            echo "<script>location='uploadDoc.php'</script>";
+        }
         $fileType = $_FILES['file']['type'];
         $fileSize = $_FILES['file']['size'];
         $doctype = $_POST["docType"];
         //return true if file is pdf , image, txt else return false input $fileType
+        //check file is not grater than 2gb
+        if ($fileSize > 2147483647) {
+            echo "<script>alert('File size is too large')</script>";
+            echo "<script>location='uploadDoc.php'</script>";
+        }
         $chk = checkFileType($fileType);
         if ($chk == false) {
             echo "<script>alert('Invalid file type')</script>";
