@@ -16,7 +16,7 @@ $genders = db::getRecords($query);
 <head>
     <meta charset="UTF-8">
     <title>Pick Admin</title>
-    <link rel="shortcut icon" href="dist/images/favicon.ico" />
+    <link rel="shortcut icon" href="dist/images/logo.png" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <!-- START: Template CSS-->
@@ -69,6 +69,10 @@ $genders = db::getRecords($query);
                             <label class="form-control-placeholder" for="email">Email</label>
                         </div>
                         <div class="form-group mb-3" style="padding-bottom: 1rem;">
+                            <input type="phone" name="phone" class="form-control" id="phone" pattern="[0-9]{4}-[0-9]{7}" maxlength="11" oninput="formatPhone(this)" required value="" onchange="this.setAttribute('value', this.value);">
+                            <label class="form-control-placeholder" for="email">Contact</label>
+                        </div>
+                        <div class="form-group mb-3" style="padding-bottom: 1rem;">
                             <input type="password" name="pass" class="form-control" id="temp" value="" onchange="this.setAttribute('value', this.value);">
                             <label class="form-control-placeholder" for="temp">Password</label>
                         </div>
@@ -108,6 +112,16 @@ $genders = db::getRecords($query);
                             ?>
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <strong>Error!</strong> Password and Confirm Password does not match
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                            <?php
+                        }
+                        if (isset($_GET["status"]) && $_GET["status"] == 8) {
+                            ?>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Error!</strong> Phone number must be in form xxxx-xxxxxxx
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
@@ -194,6 +208,16 @@ $genders = db::getRecords($query);
             }
 
             // Set the formatted value back to the input
+            input.value = cnic;
+        }
+    </script>
+    <script>
+        function formatPhone(input) {
+            var cnic = input.value.replace(/\D/g, '');
+            if (cnic.length > 5) {
+                cnic = cnic.substring(0, 4) + '-' + cnic.substring(7);
+            }
+
             input.value = cnic;
         }
     </script>
