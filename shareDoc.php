@@ -24,22 +24,11 @@ include("header.php");
                                     <a class="nav-link  py-2 px-4 px-lg-4 " href="freezeDoc.php">Freeze Doc</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="searchDoc.php">Search </a>
+                                    <a class="nav-link  py-2 px-4 px-lg-4 " href="searchOrgz.php">Search
+                                        Organization</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="passProtec.php">Add Password </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="archive.php">Archive </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchOrgz.php">Search Organization
-                                    </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="createSubmission.php">Create
-                                        Submission
-                                    </a>
+                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchDoc.php">Search </a>
                                 </li>
                                 <li class="nav-item ml-0 mb-2 mb-sm-0">
                                     <a class="nav-link py-2 px-4 px-lg-4 active" href="shareDoc.php">Share</a>

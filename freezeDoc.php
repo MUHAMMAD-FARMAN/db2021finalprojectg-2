@@ -2,7 +2,7 @@
 include("header.php");
 include("database.php");
 session_start();
-$query = "SELECT * FROM Documents WHERE UserId = '" . $_SESSION['user'] . "'";
+$query = "SELECT * FROM Documents WHERE UserId = '" . $_SESSION['user'] . "' and Status != 12 and IsDeleted = 0";
 $doc = db::getRecords($query);
 ?>
 <main>
@@ -18,7 +18,7 @@ $doc = db::getRecords($query);
                         <div class="align-self-center">
                             <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link  py-2 px-3 px-lg-4  " href="uploadDoc.php"> Upload Document</a>
+                                    <a class="nav-link  py-2 px-3 px-lg-4 " href="uploadDoc.php"> Upload Document</a>
                                 </li>
                                 <li class="nav-item ml-0">
                                     <a class="nav-link  py-2 px-3 px-lg-4 " href="verifyDoc.php">Verify
@@ -28,13 +28,14 @@ $doc = db::getRecords($query);
                                     <a class="nav-link  py-2 px-4 px-lg-4 active" href="freezeDoc.php">Freeze Doc</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="searchDoc.php">Search </a>
+                                    <a class="nav-link  py-2 px-4 px-lg-4 " href="searchOrgz.php">Search
+                                        Organization</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="passProtec.php">Add Password </a>
+                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchDoc.php">Search </a>
                                 </li>
                                 <li class="nav-item ml-0 mb-2 mb-sm-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="shareDoc.php">Share</a>
+                                    <a class="nav-link py-2 px-4 px-lg-4" href="shareDoc.php">Share</a>
                                 </li>
                             </ul>
                         </div>
@@ -56,7 +57,7 @@ $doc = db::getRecords($query);
                                                 <option value="-1" selected>Choose...</option>
                                                 <?php
                                                 foreach ($doc as $d) {
-                                                    echo "<option value=".$d["DocId"].">" . $d['DocumentName'] . "</option>";
+                                                    echo "<option value=".$d["DocId"].">" . $d['DocTitle'] . "</option>";
                                                 }
                                                 ?>
                                             </select>

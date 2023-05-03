@@ -10,7 +10,7 @@ if(isset($_POST["freezeDoc"]))
     }
     // change status of document to 12
     $query = "UPDATE Documents SET Status=12 WHERE DocId='$docId'";
-    $result = db::getRecord($query);
+    $result = db::updateRecord($query);
     if($result!=null)
     {
         echo "<script>location='freezeDoc.php?status=1'</script>";

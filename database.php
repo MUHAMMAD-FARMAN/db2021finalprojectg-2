@@ -71,9 +71,11 @@ class db {
     {
         $stmt = self::$conn->prepare("EXEC sp_DeleteDocument @UserId = :userId, @DocTitle = :docTitle");
         
+        $docTitle = "My Document"; // Replace with the actual document title
         $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);
         $stmt->bindParam(':docTitle', $DocTitle, PDO::PARAM_STR);
 
+        // Execute the statement
         $stmt->execute();
     }
     

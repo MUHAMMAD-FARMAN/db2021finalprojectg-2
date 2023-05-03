@@ -103,12 +103,10 @@ if (!isset($_SESSION["user"])) {
                         </li>
 
                         <li class="align-self-center">
-                        <!-- <i class="icon-power icons"></i> -->
-                            <a href="signout.php" class="nav-link" aria-expanded="false" style = "margin-bottom:1"><span
-                                  class="icon-power icons h4" >
+                            <!-- <i class="icon-power icons"></i> -->
+                            <a href="signout.php" class="nav-link" aria-expanded="false" style="margin-bottom:1"><span
+                                    class="icon-power icons h4">
                             </a>
-                            
-
                         </li>
                         <li class="dropdown align-self-center d-inline-block">
                             <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="false"><i
@@ -162,13 +160,10 @@ if (!isset($_SESSION["user"])) {
                                         <i class="icon-arrow-right pl-2 small"></i></a></li>
                             </ul>
                         </li>
-                        <li class="dropdown user-profile align-self-center d-inline-block">
-                            <a href="#" class="nav-link py-0" data-toggle="dropdown" aria-expanded="false">
-                                <div class="media">
-                                    <img src="dist/images/author.jpg" alt="" class="d-flex img-fluid rounded-circle"
-                                        width="29">
-                                </div>
-                            </a>
+                        <li class="dropdown user-profile align-self-center d-inline-block"
+                            style="padding-top:25px; padding-left:20px">
+                            <a class="text-success edit-document" data-target="#" href="profile.php"><i
+                                    class="icon-user" style="color:black;"></i></a>
 
                             <div class="dropdown-menu border dropdown-menu-right p-0">
                                 <a href="#" class="dropdown-item px-2 align-self-center d-flex">
@@ -180,12 +175,12 @@ if (!isset($_SESSION["user"])) {
                                     <span class="icon-support mr-2 h6  mb-0"></span> Help Center</a>
                                 <a href="#" class="dropdown-item px-2 align-self-center d-flex">
                                     <span class="icon-globe mr-2 h6 mb-0"></span> Forum</a>
-                                <a href="#" class="dropdown-item px-2 align-self-center d-flex">
+                                <a href="profile.php" class="dropdown-item px-2 align-self-center d-flex">
                                     <span class="icon-settings mr-2 h6 mb-0"></span> Account
                                     Settings</a>
                                 <div class="dropdown-divider"></div>
                                 <a href="#" class="dropdown-item px-2 text-danger align-self-center d-flex">
-                                    <span class="icon-logout mr-2 h6  mb-0"></span> Sign Out</a>
+                                    <span class="icon-logout mr-2 h6 mb-0"></span> Sign Out</a>
                             </div>
 
                         </li>
@@ -204,7 +199,7 @@ if (!isset($_SESSION["user"])) {
             <ul id="side-menu" class="sidebar-menu">
                 <li><a href="uploadDoc.php"><i class="icon-docs mr-1"></i> Document</a></li>
                 <li><a href="viewAllDocs.php"><i class="icon-docs mr-1"></i> View all Document</a></li>
-                <li class="dropdown"><a href="#"><i class="icon-user mr-1"></i> Account</a></li>
+                <li><a href="profile.php"><i class="icon-user mr-1"></i> Account</a></li>
                 </li>
                 <!-- <li class="dropdown"><a href="#"><i class="icon-organization mr-1"></i> Layout</a>
                         <ul>

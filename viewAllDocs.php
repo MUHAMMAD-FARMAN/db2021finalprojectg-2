@@ -45,16 +45,17 @@
         <!-- START: Card Data-->
         <div class="row row-eq-height">
             <div class="col-12 col-lg-2 mt-3 todo-menu-bar flip-menu pr-lg-0">
-                <a href="#" class="d-inline-block d-lg-none mt-1 flip-menu-close"><i class="icon-close"></i></a>
+                <a href="uploadDoc.php" class="d-inline-block d-lg-none mt-1 flip-menu-close"><i
+                        class="icon-close"></i></a>
                 <div class="card border h-100 document-menu-section">
                     <div class="card-header d-flex justify-content-between align-items-center">
 
-                        <a href="#" class="bg-primary py-2 px-2 rounded ml-auto text-white w-100 text-center"
-                            data-toggle="modal" data-target="#newcontact">
-                            <i class="icon-plus align-middle text-white"></i> <span class="d-none d-xl-inline-block">Add
+                        <a href="uploadDoc.php"
+                            class="bg-primary py-2 px-2 rounded ml-auto text-white w-100 text-center">
+                            <i class="icon-plus align-middle text-white" href="uploadDoc.php"></i> <span
+                                class="d-none d-xl-inline-block">Add
                                 New File</span>
                         </a>
-
                     </div>
 
                 </div>
@@ -117,10 +118,29 @@
                                         </p>
                                     </div>
                                     <div class="line-h-1 h5">
-
-                                        <a class="text-success edit-document" href="docViewer.php?status=<?php echo $doc['DocId']?>" data-toggle=" modal"
+                                        <?php
+                                        if($doc['Status'] == 33)
+                                        {
+                                      echo'<a class="text-success edit-document" data-toggle=" modal" data-target="#"><i
+                                                class="icon-check"></i></a>';
+                                        }
+                                        ?>
+                                        <?php
+                                        if($doc['Status'] == 12)
+                                        {
+                                            
+                                        echo'<a class="text-success edit-document"
+                                                    href="unFreezeLogic.php?status='. $doc['DocId'] . '"
+                                        data-toggle=" modal" data-target="#"><i class="pe-is-w-snowflake"
+                                            style="color:grey""></i></a> ';
+                                        }
+                                            ?>
+                                        <a class=" text-success edit-document"
+                                            href="docViewer.php?status=<?php echo $doc['DocId']?>" data-toggle=" modal"
                                             data-target="#"><i class="icon-eye"></i></a>
-                                        <a class="text-danger delete-document" href="docDelLogic.php?status=<?php echo $doc['DocId']?>"><i class="icon-trash"></i></a>
+                                        <a class="text-danger delete-document"
+                                            href="docDelLogic.php?status=<?php echo $doc['DocId']?>"><i
+                                                class="icon-trash"></i></a>
                                     </div>
                                 </div>
                             </div>
