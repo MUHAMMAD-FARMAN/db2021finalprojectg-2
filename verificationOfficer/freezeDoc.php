@@ -1,5 +1,9 @@
 <?php
 include("header.php");
+include("database.php");
+session_start();
+$query = "SELECT * FROM Documents WHERE UserId = '" . $_SESSION['user'] . "' and Status != 12 and IsDeleted = 0";
+$doc = db::getRecords($query);
 ?>
 <main>
     <div class="container-fluid site-width">
@@ -14,7 +18,7 @@ include("header.php");
                         <div class="align-self-center">
                             <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link  py-2 px-3 px-lg-4  " href="uploadDoc.php"> Upload Document</a>
+                                    <a class="nav-link  py-2 px-3 px-lg-4 " href="uploadDoc.php"> Upload Document</a>
                                 </li>
                                 <li class="nav-item ml-0">
                                     <a class="nav-link  py-2 px-3 px-lg-4 " href="verifyDoc.php">Verify
@@ -24,25 +28,14 @@ include("header.php");
                                     <a class="nav-link  py-2 px-4 px-lg-4 active" href="freezeDoc.php">Freeze Doc</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="searchDoc.php">Search </a>
+                                    <a class="nav-link  py-2 px-4 px-lg-4 " href="searchOrgz.php">Search
+                                        Organization</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="passProtec.php">Add Password </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="archive.php">Archive </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchOrgz.php">Search Organization
-                                    </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="createSubmission.php">Create
-                                        Submission
-                                    </a>
+                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchDoc.php">Search </a>
                                 </li>
                                 <li class="nav-item ml-0 mb-2 mb-sm-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="shareDoc.php">Share</a>
+                                    <a class="nav-link py-2 px-4 px-lg-4" href="shareDoc.php">Share</a>
                                 </li>
                             </ul>
                         </div>
@@ -56,17 +49,32 @@ include("header.php");
                             </div>
 
                             <div class="card-body">
-                                <form>
+                                <form action="freezeDocLogic.php" method="POST">
                                     <div class="form-row ">
                                         <div class="form-group col-md-6">
                                             <label for="inputState">Select Document</label>
-                                            <select id="inputState" class="form-control">
-                                                <option selected>Choose...</option>
-                                                <option>...</option>
+                                            <select id="inputState" name="DocTitle" class="form-control">
+                                                <option value="-1" selected>Choose...</option>
+                                                <?php
+                                                foreach ($doc as $d) {
+                                                    echo "<option value=".$d["DocId"].">" . $d['DocTitle'] . "</option>";
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary" type="submit">Freeze</button>
+                                    <button class="btn btn-primary" name="freezeDoc" type="submit">Freeze</button>
+                                    <?php
+                                    if (isset($_GET['status'])) {
+                                        if ($_GET['status'] == 1) {
+                                            echo "<p class='text-success'>Document has been freezed</p>";
+                                        } else if ($_GET['status'] == 2) {
+                                            echo "<p class='text-danger'>Document has not been freezed</p>";
+                                        }else if($_GET['status'] == 3){
+                                            echo "<p class='text-danger'>Select any option</p>";
+                                        }
+                                    }
+                                    ?>
                                 </form>
                             </div>
                         </div>

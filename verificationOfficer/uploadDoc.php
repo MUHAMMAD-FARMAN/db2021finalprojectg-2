@@ -17,7 +17,7 @@ $types = db::getRecords($query);
                         <div class="align-self-center">
                             <ul class="nav nav-pills flex-column flex-sm-row" id="myTab" role="tablist">
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link  py-2 px-3 px-lg-4 active " href="uploadDoc.php"> Upload
+                                    <a class="nav-link  py-2 px-3 px-lg-4 active" href="uploadDoc.php"> Upload
                                         Document</a>
                                 </li>
                                 <li class="nav-item ml-0">
@@ -28,26 +28,14 @@ $types = db::getRecords($query);
                                     <a class="nav-link  py-2 px-4 px-lg-4 " href="freezeDoc.php">Freeze Doc</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="searchDoc.php">Search </a>
+                                    <a class="nav-link  py-2 px-4 px-lg-4 " href="searchOrgz.php">Search
+                                        Organization</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="passProtec.php">Add Password </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="archive.php">Archive </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchOrgz.php">Search Organization
-                                    </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="createSubmission.php">Create
-                                        Submission
-                                    </a>
+                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchDoc.php">Search </a>
                                 </li>
                                 <li class="nav-item ml-0 mb-2 mb-sm-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="shareDoc.php">
-                                        Share</a>
+                                    <a class="nav-link py-2 px-4 px-lg-4" href="shareDoc.php">Share</a>
                                 </li>
                             </ul>
                         </div>
@@ -76,8 +64,7 @@ $types = db::getRecords($query);
                                             <div class="custom-file overflow-hidden  mb-0">
                                                 <input id="customFile" type="file" name="file"
                                                     onchange="updateLabel(this)" class="file"
-                                                    accept="image/*,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,text/plain"
-                                                    required>
+                                                    accept="image/*,application/pdf,text/plain" required>
                                                 <label for="customFile" class="file">Choose file</label>
                                             </div>
                                         </div>

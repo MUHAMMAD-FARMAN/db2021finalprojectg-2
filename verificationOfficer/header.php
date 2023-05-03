@@ -12,12 +12,7 @@ if(!isset($_SESSION["user"]))
 
 <head>
     <meta charset="UTF-8">
-    <title>Pick Admin</title>
-    <link rel="shortcut icon" href="dist/images/favicon.ico" />
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
-        <meta charset="UTF-8">
-        <title>NDMS - Verification Officer</title>
+    <title>NDMS - Verification Officer</title>
         <link rel="shortcut icon" href="dist/images/logo.png" />
         <meta name="viewport" content="width=device-width,initial-scale=1"> 
     <!-- START: Template CSS-->
@@ -93,8 +88,8 @@ if(!isset($_SESSION["user"]))
                             <div class="btn-search position-absolute top-0">
                                 <a href="#"><i class="h6 icon-magnifier"></i></a>
                             </div>
-                            <a href="#" class="position-absolute close-button mobilesearch d-lg-none"
-                                data-toggle="dropdown" aria-expanded="false"><i class="icon-close h5"></i>
+                        <a href="#" class="position-absolute close-button mobilesearch d-lg-none" data-toggle="dropdown"
+                            aria-expanded="false"><i class="icon-close h5"></i>
                             </a>
 
                         </div>
@@ -102,64 +97,17 @@ if(!isset($_SESSION["user"]))
                     <div class="navbar-right ml-auto h-100">
                         <ul class="ml-auto p-0 m-0 list-unstyled d-flex top-icon h-100">
                             <li class="d-inline-block align-self-center  d-block d-lg-none">
-                                <a href="#" class="nav-link mobilesearch" data-toggle="dropdown"
-                                    aria-expanded="false"><i class="icon-magnifier h4"></i>
+                            <a href="#" class="nav-link mobilesearch" data-toggle="dropdown" aria-expanded="false"><i
+                                    class="icon-magnifier h4"></i>
                                 </a>
                             </li>
 
-                            <li class="dropdown align-self-center">
-                                <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="false"><i
-                                        class="icon-reload h4"></i>
-                                    <span class="badge badge-default"> <span class="ring">
-                                        </span><span class="ring-point">
-                                        </span> </span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-right border  py-0">
-                                    <li>
-                                        <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
-                                            href="#">
-                                            <div class="media">
-                                                <img src="dist/images/author.jpg" alt=""
-                                                    class="d-flex mr-3 img-fluid rounded-circle">
-                                                <div class="media-body">
-                                                    <p class="mb-0">john</p>
-                                                    <span class="text-success">New user registered.</span>
-                                                </div>
-                                            </div>
+                        <li class="align-self-center">
+                            <!-- <i class="icon-power icons"></i> -->
+                            <a href="signout.php" class="nav-link" aria-expanded="false" style="margin-bottom:1"><span
+                                    class="icon-power icons h4">
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
-                                            href="#">
-                                            <div class="media">
-                                                <img src="dist/images/author2.jpg" alt=""
-                                                    class="d-flex mr-3 img-fluid rounded-circle">
-                                                <div class="media-body">
-                                                    <p class="mb-0">Peter</p>
-                                                    <span class="text-success">Server #12 overloaded.</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item px-2 py-2 border border-top-0 border-left-0 border-right-0"
-                                            href="#">
-                                            <div class="media">
-                                                <img src="dist/images/author3.jpg" alt=""
-                                                    class="d-flex mr-3 img-fluid rounded-circle">
-                                                <div class="media-body">
-                                                    <p class="mb-0">Bill</p>
-                                                    <span class="text-danger">Application error.</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                    <li><a class="dropdown-item text-center py-2" href="#"> See All Tasks <i
-                                                class="icon-arrow-right pl-2 small"></i></a></li>
-                                </ul>
-
-                            </li>
                             <li class="dropdown align-self-center d-inline-block">
                                 <a href="#" class="nav-link" data-toggle="dropdown" aria-expanded="false"><i
                                         class="icon-bell h4"></i>
@@ -212,13 +160,10 @@ if(!isset($_SESSION["user"]))
                                             <i class="icon-arrow-right pl-2 small"></i></a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown user-profile align-self-center d-inline-block">
-                                <a href="#" class="nav-link py-0" data-toggle="dropdown" aria-expanded="false">
-                                    <div class="media">
-                                        <img src="dist/images/author.jpg" alt="" class="d-flex img-fluid rounded-circle"
-                                            width="29">
-                                    </div>
-                                </a>
+                        <li class="dropdown user-profile align-self-center d-inline-block"
+                            style="padding-top:25px; padding-left:20px">
+                            <a class="text-success edit-document" data-target="#" href="profile.php"><i
+                                    class="icon-user" style="color:black;"></i></a>
 
                                 <div class="dropdown-menu border dropdown-menu-right p-0">
                                     <a href="#" class="dropdown-item px-2 align-self-center d-flex">
@@ -230,12 +175,12 @@ if(!isset($_SESSION["user"]))
                                         <span class="icon-support mr-2 h6  mb-0"></span> Help Center</a>
                                     <a href="#" class="dropdown-item px-2 align-self-center d-flex">
                                         <span class="icon-globe mr-2 h6 mb-0"></span> Forum</a>
-                                    <a href="#" class="dropdown-item px-2 align-self-center d-flex">
+                                <a href="profile.php" class="dropdown-item px-2 align-self-center d-flex">
                                         <span class="icon-settings mr-2 h6 mb-0"></span> Account
                                         Settings</a>
                                     <div class="dropdown-divider"></div>
                                     <a href="#" class="dropdown-item px-2 text-danger align-self-center d-flex">
-                                        <span class="icon-logout mr-2 h6  mb-0"></span> Sign Out</a>
+                                    <span class="icon-logout mr-2 h6 mb-0"></span> Sign Out</a>
                                 </div>
 
                             </li>
@@ -252,23 +197,11 @@ if(!isset($_SESSION["user"]))
             <div class="site-width">
                 <!-- START: Menu-->
                 <ul id="side-menu" class="sidebar-menu">
-                    <li class="dropdown"><a href="#"><i class="icon-home mr-1"></i> Dashboard</a>
-                        <ul>
-                            <li><a href="index.html"><i class="icon-user"></i> Dashboard</a></li>
-                            <li><a href="index-account.html"><i class="icon-layers"></i> Account</a></li>
-                            <li><a href="index-analytic.html"><i class="icon-grid"></i> Analytic</a></li>
-                            <li><a href="index-covid.html"><i class="icon-earphones"></i> COVID</a></li>
-                            <li><a href="index-crypto.html"><i class="icon-support"></i> Crypto</a></li>
-                            <li><a href="index-ecommerce.html"><i class="icon-briefcase"></i> Ecommerce</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="index.php"><i class="icon-home mr-1"></i> Dashboard</a>
-                    </li>
                     <li><a href="uploadDoc.php"><i class="icon-docs mr-1"></i> Document</a></li>
-                    <li><a href="viewAllDoc.php"><i class="icon-docs mr-1"></i> View all Document</a></li>
-                    <li><a href="viewAllDocVerify.php"><i class="icon-check mr-1"></i> Verify</a></li>
-                    <li class="dropdown"><a href="#"><i class="icon-user mr-1"></i> Account</a></li>
+                <li><a href="viewAllDocs.php"><i class="icon-docs mr-1"></i> View all Document</a></li>
+                <li><a href="viewDocByCode.php"><i class="icon-docs mr-1"></i> View Document By Code</a></li>
+                <li><a href="viewAllDocVerify.php"><i class="icon-check mr-1"></i> Verify</a></li>
+                <li><a href="profile.php"><i class="icon-user mr-1"></i> Account</a></li>
                     </li>
                     <!-- <li class="dropdown"><a href="#"><i class="icon-organization mr-1"></i> Layout</a>
                         <ul>

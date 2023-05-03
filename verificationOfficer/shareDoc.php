@@ -1,5 +1,10 @@
 <?php
 include("header.php");
+include("database.php");
+session_start();
+$id = $_SESSION['user'];
+$sql = "SELECT DocTitle, DocumentCode FROM Documents WHERE UserId = '$id'";
+$results = db::getRecords($sql);
 ?>
 <main>
     <div class="container-fluid site-width">
@@ -24,22 +29,11 @@ include("header.php");
                                     <a class="nav-link  py-2 px-4 px-lg-4 " href="freezeDoc.php">Freeze Doc</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="searchDoc.php">Search </a>
+                                    <a class="nav-link  py-2 px-4 px-lg-4 " href="searchOrgz.php">Search
+                                        Organization</a>
                                 </li>
                                 <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="passProtec.php">Add Password </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="archive.php">Archive </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchOrgz.php">Search Organization
-                                    </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="createSubmission.php">Create
-                                        Submission
-                                    </a>
+                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchDoc.php">Search </a>
                                 </li>
                                 <li class="nav-item ml-0 mb-2 mb-sm-0">
                                     <a class="nav-link py-2 px-4 px-lg-4 active" href="shareDoc.php">Share</a>
@@ -61,8 +55,15 @@ include("header.php");
                                         <div class="form-group col-md-6">
                                             <label for="inputState">Select Document</label>
                                             <select id="inputState" class="form-control">
-                                                <option selected>Choose...</option>
-                                                <option>...</option>
+                                                <option value="" selected>Choose...</option>
+                                                <?php
+                                                    foreach($results as $row)
+                                                    {
+                                                        ?>
+                                                        <option value= <?php echo $row['DocumentCode'];?> > <?php echo $row['DocTitle'];?></option>;
+                                                        <?php
+                                                    }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -73,14 +74,6 @@ include("header.php");
                                                 placeholder="Readonly" value="" readonly>
                                         </div>
                                     </div>
-                                    <div class="form-row ">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="validationDefault01">Editable</label>
-                                            <input type="text" class="form-control" id="validationDefault01"
-                                                placeholder="Editable" value="" readonly>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary" type="submit">Submit form</button>
                                 </form>
                             </div>
                         </div>
@@ -89,6 +82,11 @@ include("header.php");
             </div>
         </div>
 </main>
+<script>
+    document.getElementById('inputState').addEventListener('change', function() {
+        document.getElementById('validationDefault01').value = this.value;
+    });
+</script>
 <?php
 include("footer.php");
 ?>
