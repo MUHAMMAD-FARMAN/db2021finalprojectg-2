@@ -1,6 +1,13 @@
 <?php
 include ('database.php');
 
+// Get the id from Lookup of FROZEN
+$query = "SELECT id FROM Lookup WHERE Category = 'DOCSTATUS' and Value = 'FROZEN'";
+$res = db::getRecord($query);
+$st = $res['id'];
+// convert id in int
+$st = (int)$st;
+
 if(isset($_POST["freezeDoc"]))
 {
     $docId = $_POST["DocTitle"];
@@ -9,7 +16,7 @@ if(isset($_POST["freezeDoc"]))
         echo "<script>location='freezeDoc.php?status=3'</script>";
     }
     // change status of document to 12
-    $query = "UPDATE Documents SET Status=12 WHERE DocId='$docId'";
+    $query = "UPDATE Documents SET Status= $st WHERE DocId='$docId'";
     $result = db::updateRecord($query);
     if($result!=null)
     {
