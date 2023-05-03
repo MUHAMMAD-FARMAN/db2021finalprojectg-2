@@ -24,7 +24,6 @@ if(isset($_POST["officerSignUP"]))
     }
     else
     {
-        session_start();
         $_SESSION['verOfficerId'] = $officerId;
         $_SESSION['verOfficerCategory'] = $category;
 
