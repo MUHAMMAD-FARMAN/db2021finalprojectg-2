@@ -1,5 +1,8 @@
 <?php
 include("header.php");
+include("database.php");
+$sql = "SELECT DocTitle, DocumentCode FROM Documents";
+$results = db::getRecords($sql);
 ?>
 <main>
     <div class="container-fluid site-width">
@@ -50,8 +53,15 @@ include("header.php");
                                         <div class="form-group col-md-6">
                                             <label for="inputState">Select Document</label>
                                             <select id="inputState" class="form-control">
-                                                <option selected>Choose...</option>
-                                                <option>...</option>
+                                                <option value="" selected>Choose...</option>
+                                                <?php
+                                                    foreach($results as $row)
+                                                    {
+                                                        ?>
+                                                        <option value= <?php echo $row['DocumentCode'];?> > <?php echo $row['DocTitle'];?></option>;
+                                                        <?php
+                                                    }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
@@ -62,14 +72,6 @@ include("header.php");
                                                 placeholder="Readonly" value="" readonly>
                                         </div>
                                     </div>
-                                    <div class="form-row ">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="validationDefault01">Editable</label>
-                                            <input type="text" class="form-control" id="validationDefault01"
-                                                placeholder="Editable" value="" readonly>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary" type="submit">Submit form</button>
                                 </form>
                             </div>
                         </div>
@@ -78,6 +80,11 @@ include("header.php");
             </div>
         </div>
 </main>
+<script>
+    document.getElementById('inputState').addEventListener('change', function() {
+        document.getElementById('validationDefault01').value = this.value;
+    });
+</script>
 <?php
 include("footer.php");
 ?>

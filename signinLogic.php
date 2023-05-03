@@ -41,7 +41,7 @@ if(isset($_POST["signIN"]))
 
                     $_SESSION["verOfficerId"] = $res1['verificationOfficerId'];
                     $_SESSION["verOfficerCategory"] = $res1['officerCategory'];
-                    echo "<script>location='verificationOfficer/index.php?status=1'</script>";
+                    echo "<script>location='verificationOfficer/viewAllDocs.php?status=1'</script>";
                 }
                 else
                 {
@@ -57,14 +57,14 @@ if(isset($_POST["signIN"]))
                 {
                     
                     $_SESSION["orgRepId"] = $res1['RepId'];
-                    echo "<script>location='orgRep/index.php?status=1'</script>";
+                    echo "<script>location='orgRep/viewAllDocs.php?status=1'</script>";
                 }
                 else
                 {
                     echo "alert('Empty database')</script>";
                 }
             }
-            echo "<script>location='index.php?status=1'</script>";
+            echo "<script>location='viewAllDocs.php?status=1'</script>";
             
         }
         else

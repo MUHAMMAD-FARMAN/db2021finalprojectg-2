@@ -1,6 +1,15 @@
 <?php
     include 'header.php';
-    
+    include 'database.php';
+    session_start();
+    $userId = $_SESSION["user"];
+    //get user info
+    $user = db::getRecord("SELECT * FROM Person WHERE BFormNo = '$userId'");
+    $firstName = $user['FirstName'];
+    $lastName = $user['LastName'];
+    $email = $user['Email'];
+    $contact = $user['Contact'];
+
 ?>
 
 <!-- START: Main Content-->
@@ -32,34 +41,69 @@
                         <h4 class="card-title">User Information</h4>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="updateUserLogic.php" method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="First Name:">
+                                <input type="text" value="<?php echo $firstName?>" name="fname" class="form-control" placeholder="First Name:">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Last Name:">
+                                <input type="text" value="<?php echo $lastName?>" name="lname" class="form-control" placeholder="Last Name:">
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email:">
+                                <input type="email" value="<?php echo $email?>" name="email" class="form-control" placeholder="Email:">
                             </div>
                             <div class="form-group">
-                                <input type="number" class="form-control" placeholder="Contact:">
+                                <input type="number" value="<?php echo $contact?>" name="contact" class="form-control" placeholder="Contact:">
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Password:">
-                            </div>
-                            <div class="form-group">
-                                <label for="male">Male</label>
-                                <input type="radio" id="male" name="gender" value="male">
+                            <?php
+                                if(isset($_GET["status"]))
+                                {
+                                    if($_GET["status"] == 0)
+                                    {
+                                        ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> Data Not updated
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <?php
+                                    }
+                                    else if($_GET["status"] == 1)
+                                    {
+                                        ?>
+                                    <div class="alert alert alert-dismissible fade show" role="alert">
+                            <strong>Good!</strong> Data updated
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <?php
+                                    }
+                                    else if($_GET["status"] == 2)
+                                    {
+                                        ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> Submitted same data
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div><?php
+                                    }
+                                    else if($_GET["status"] == 3)
+                                    {
 
-                                <label for="female">Female</label>
-                                <input type="radio" id="female" name="gender" value="female">
-
-                                <label for="other">Other</label>
-                                <input type="radio" id="other" name="gender" value="other">
-
-                            </div>
-                            <a href="#" class="btn btn-primary btn-default">Submit</a>
+                                        ?>
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> Fill all of the fields
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                                        </div>
+                            <?php
+                                    }
+                                }
+                            ?>
+                            <input type="submit" name="update" class="btn btn-primary btn-default">
                         </form>
                     </div>
                 </div>
@@ -71,18 +115,38 @@
                         <h4 class="card-title">Feedback</h4>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="feedback.php" method="post">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Name:">
+                                <textarea name="Description" class="form-control" placeholder="Message:"></textarea>
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Email:">
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" placeholder="Message:"></textarea>
-                            </div>
+                            <?php
+                            if(isset($_GET["status"]))
+                            {
+                                    if($_GET["status"] == 4)
+                                    {
+                                        ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> Feedback is not updated
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div><?php
+                                    }
+                                    else if($_GET["status"] == 5)
+                                    {
 
-                            <a href="#" class="btn btn-primary btn-default">Submit</a>
+                                        ?>
+                                        <div class="alert alert alert-dismissible fade show" role="alert">
+                            <strong>Congrats!</strong> Feedback recorded
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                                        </div>
+                            <?php
+                                    }
+                                }
+                            ?>
+                            <input type="submit" name="Feedback" class="btn btn-primary btn-default">
                         </form>
                     </div>
                 </div>

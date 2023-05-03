@@ -2,7 +2,18 @@
 session_start();
 include 'database.php';
 
-$id = $_GET["status"];
+if(isset($_POST['update']))
+{
+    $DocumentCode = $_POST['docCode'];
+    $res = db::getRecord("SELECT * FROM Documents WHERE DocumentCode = '$DocumentCode'");
+    if($res == null){
+        echo "<script>location.href='viewDocByCode.php?status=0'</script>";
+    }else{
+        $id = $res["DocId"];
+    }
+}
+else 
+    $id = $_GET["status"];
 $Docmnt = db::getRecord("SELECT * FROM Documents WHERE DocId = '$id'");
 if($Docmnt == null){
     header("Location: viewAllDocs.php");

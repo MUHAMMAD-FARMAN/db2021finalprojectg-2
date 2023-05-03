@@ -199,6 +199,7 @@ if (!isset($_SESSION["user"])) {
             <ul id="side-menu" class="sidebar-menu">
                 <li><a href="uploadDoc.php"><i class="icon-docs mr-1"></i> Document</a></li>
                 <li><a href="viewAllDocs.php"><i class="icon-docs mr-1"></i> View all Document</a></li>
+                <li><a href="viewDocByCode.php"><i class="icon-docs mr-1"></i> View Document By Code</a></li>
                 <li><a href="profile.php"><i class="icon-user mr-1"></i> Account</a></li>
                 </li>
                 <!-- <li class="dropdown"><a href="#"><i class="icon-organization mr-1"></i> Layout</a>
