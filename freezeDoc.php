@@ -1,7 +1,8 @@
 <?php
 include("header.php");
+include("database.php");
 session_start();
-$query = "SELECT DocTitle FROM Documents WHERE UserId = '" . $_SESSION['user'] . "'";
+$query = "SELECT * FROM Documents WHERE UserId = '" . $_SESSION['user'] . "'";
 $doc = db::getRecords($query);
 ?>
 <main>
@@ -32,18 +33,6 @@ $doc = db::getRecords($query);
                                 <li class="nav-item ml-0">
                                     <a class="nav-link py-2 px-4 px-lg-4" href="passProtec.php">Add Password </a>
                                 </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4" href="archive.php">Archive </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="searchOrgz.php">Search Organization
-                                    </a>
-                                </li>
-                                <li class="nav-item ml-0">
-                                    <a class="nav-link py-2 px-4 px-lg-4 " href="createSubmission.php">Create
-                                        Submission
-                                    </a>
-                                </li>
                                 <li class="nav-item ml-0 mb-2 mb-sm-0">
                                     <a class="nav-link py-2 px-4 px-lg-4 " href="shareDoc.php">Share</a>
                                 </li>
@@ -64,10 +53,10 @@ $doc = db::getRecords($query);
                                         <div class="form-group col-md-6">
                                             <label for="inputState">Select Document</label>
                                             <select id="inputState" name="DocTitle" class="form-control">
-                                                <option selected>Choose...</option>
+                                                <option value="-1" selected>Choose...</option>
                                                 <?php
                                                 foreach ($doc as $d) {
-                                                    echo "<option>" . $d['DocumentName'] . "</option>";
+                                                    echo "<option value=".$d["DocId"].">" . $d['DocumentName'] . "</option>";
                                                 }
                                                 ?>
                                             </select>
@@ -80,6 +69,8 @@ $doc = db::getRecords($query);
                                             echo "<p class='text-success'>Document has been freezed</p>";
                                         } else if ($_GET['status'] == 2) {
                                             echo "<p class='text-danger'>Document has not been freezed</p>";
+                                        }else if($_GET['status'] == 3){
+                                            echo "<p class='text-danger'>Select any option</p>";
                                         }
                                     }
                                     ?>

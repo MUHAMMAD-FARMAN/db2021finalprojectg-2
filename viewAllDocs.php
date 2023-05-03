@@ -2,7 +2,7 @@
     include 'header.php';
     include 'database.php';
     session_start();
-    $user = $_SESSION["BFormNo"];
+    $user = $_SESSION["user"];
 
     $query = "SELECT * from Documents as d inner join metaData as m on m.DocId = d.DocId where UserId = '$user' and IsDeleted = 0";
     $docs = db::getRecords($query);

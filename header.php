@@ -247,22 +247,8 @@ if (!isset($_SESSION["user"])) {
         <div class="site-width">
             <!-- START: Menu-->
             <ul id="side-menu" class="sidebar-menu">
-                <li class="dropdown"><a href="#"><i class="icon-home mr-1"></i> Dashboard</a>
-                    <ul>
-                        <li><a href="index.html"><i class="icon-user"></i> Dashboard</a></li>
-                        <li><a href="index-account.html"><i class="icon-layers"></i> Account</a></li>
-                        <li><a href="index-analytic.html"><i class="icon-grid"></i> Analytic</a></li>
-                        <li><a href="index-covid.html"><i class="icon-earphones"></i> COVID</a></li>
-                        <li><a href="index-crypto.html"><i class="icon-support"></i> Crypto</a></li>
-                        <li><a href="index-ecommerce.html"><i class="icon-briefcase"></i> Ecommerce</a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="index.php"><i class="icon-home mr-1"></i> Dashboard</a>
-                </li>
                 <li><a href="uploadDoc.php"><i class="icon-docs mr-1"></i> Document</a></li>
                 <li><a href="viewAllDocs.php"><i class="icon-docs mr-1"></i> View all Document</a></li>
-                <li class="dropdown"><a href="#"><i class="icon-check mr-1"></i> Verify</a></li>
                 <li class="dropdown"><a href="#"><i class="icon-user mr-1"></i> Account</a></li>
                 </li>
                 <!-- <li class="dropdown"><a href="#"><i class="icon-organization mr-1"></i> Layout</a>
