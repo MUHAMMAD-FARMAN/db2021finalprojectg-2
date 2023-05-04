@@ -15,10 +15,10 @@ if(isset($_POST["signUP"]))
     $CNIC = $_POST["CNIC"];
     $role = $_POST["role"];
     $gen = $_POST["gen"];
-
+    $phone = $_POST["phone"];
     
     
-    if(empty($email) || empty($pass) || empty($cpass) || empty($fname) || empty($lname) || empty($CNIC) || empty($role) || empty($gen))
+    if(empty($email) || empty($pass) || empty($cpass) || empty($fname) || empty($lname) || empty($CNIC) || empty($role) || empty($gen) || empty($phone))
     {
         echo "<script>location='signup.php?status=4'</script>";
     }
@@ -28,6 +28,10 @@ if(isset($_POST["signUP"]))
     $query2 = "Select * from Person where BFormNo='$CNIC'";
     $res2 = db::getRecord($query2);
 
+    if(!preg_match("/^[0-9]{4}-[0-9]{7}$/", $phone))
+    {
+        echo "<script>location='signup.php?status=8'</script>";
+    }
     if($pass != $cpass)
     {
         echo "<script>location='signup.php?status=1'</script>";
@@ -51,7 +55,7 @@ if(isset($_POST["signUP"]))
         $_SESSION['user'] = $CNIC;
 
         $pass = password_hash($pass,PASSWORD_DEFAULT);
-        $query3 = "INSERT INTO Person(BFormNo,UserRole,Contact, Password, Email, FirstName, LastName, Status, Gender) VALUES ('$CNIC','$role','0000', '$pass','$email','$fname','$lname',9,'$gen')";
+        $query3 = "INSERT INTO Person(BFormNo,UserRole,Contact, [Password], Email, FirstName, LastName, [Status], Gender) VALUES ('$CNIC','$role','$phone', '$pass','$email','$fname','$lname',9,'$gen')";
         $res3 = db::insertRecord($query3);
 
         // if verification officer is signing up
