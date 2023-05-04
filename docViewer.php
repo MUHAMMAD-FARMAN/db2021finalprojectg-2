@@ -5,7 +5,7 @@ include 'database.php';
 if(isset($_POST['update']))
 {
     $DocumentCode = $_POST['docCode'];
-    $res = db::getRecord("SELECT * FROM Documents WHERE DocumentCode = '$DocumentCode'");
+    $res = db::getRecord("SELECT * FROM Documents d  inner join lookup l on d.Status = l.id WHERE DocumentCode = '$DocumentCode' and l.Value!='FROZEN'");
     if($res == null){
         echo "<script>location.href='viewDocByCode.php?status=0'</script>";
     }else{

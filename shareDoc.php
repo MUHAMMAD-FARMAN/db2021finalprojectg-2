@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])) {
     header("Location: login.php");
 }
 $id = $_SESSION['user'];
-$sql = "SELECT DocTitle, DocumentCode FROM Documents WHERE UserId = '$id'";
+$sql = "SELECT DocTitle, DocumentCode FROM Documents d inner join lookup l on d.Status = l.id WHERE UserId = '$id' and l.Value!='FROZEN'";
 $results = db::getRecords($sql);
 ?>
 <main>
