@@ -52,7 +52,7 @@
                                 <input type="email" value="<?php echo $email?>" name="email" class="form-control" placeholder="Email:">
                             </div>
                             <div class="form-group">
-                                <input type="number" value="<?php echo $contact?>" name="contact" class="form-control" placeholder="Contact:">
+                            <input type="phone" name="contact" class="form-control" id="phone" pattern="[0-9]{4}-[0-9]{7}" maxlength="12" oninput="formatPhone(this)" required value="<?php echo $contact;?>" onchange="this.setAttribute('value', this.value);">
                             </div>
                             <?php
                                 if(isset($_GET["status"]))
@@ -206,11 +206,28 @@
     </div>
 </main>
 <!-- END: Content-->
+<script src="dist/vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="dist/vendors/jquery-ui/jquery-ui.min.js"></script>
+    <script src="dist/vendors/moment/moment.js"></script>
+    <script src="dist/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/vendors/slimscroll/jquery.slimscroll.min.js"></script>
+    <script>
+        function formatPhone(input) {
+            var cnic = input.value.replace(/\D/g, '');
+            if (cnic.length > 4) {
+                cnic = cnic.substring(0, 4) + '-' + cnic.substring(4);
+            }
+            if (cnic.length > 12) {
+                cnic = cnic.substring(0, 12) + '-' + cnic.substring(12);
+            }
+
+            input.value = cnic;
+        }
+    </script>
 
 
 
 
-
-<? 
+<?php
     include 'footer.php';
 ?>

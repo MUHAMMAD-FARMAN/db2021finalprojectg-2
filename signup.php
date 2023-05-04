@@ -69,7 +69,7 @@ $genders = db::getRecords($query);
                             <label class="form-control-placeholder" for="email">Email</label>
                         </div>
                         <div class="form-group mb-3" style="padding-bottom: 1rem;">
-                            <input type="phone" name="phone" class="form-control" id="phone" pattern="[0-9]{4}-[0-9]{7}" maxlength="11" oninput="formatPhone(this)" required value="" onchange="this.setAttribute('value', this.value);">
+                            <input type="phone" name="phone" class="form-control" id="phone" pattern="[0-9]{4}-[0-9]{7}" maxlength="12" oninput="formatPhone(this)" required value="" onchange="this.setAttribute('value', this.value);">
                             <label class="form-control-placeholder" for="email">Contact</label>
                         </div>
                         <div class="form-group mb-3" style="padding-bottom: 1rem;">
@@ -214,8 +214,11 @@ $genders = db::getRecords($query);
     <script>
         function formatPhone(input) {
             var cnic = input.value.replace(/\D/g, '');
-            if (cnic.length > 5) {
-                cnic = cnic.substring(0, 4) + '-' + cnic.substring(7);
+            if (cnic.length > 4) {
+                cnic = cnic.substring(0, 4) + '-' + cnic.substring(4);
+            }
+            if (cnic.length > 12) {
+                cnic = cnic.substring(0, 12) + '-' + cnic.substring(12);
             }
 
             input.value = cnic;

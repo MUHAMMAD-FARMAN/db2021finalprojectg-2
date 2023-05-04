@@ -57,6 +57,7 @@ $id = $_SESSION['user'];
                             <table id="example" class="display table dataTable table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>Doc Title</th>
                                         <th>DocCode</th>
                                         <th>User Id</th>
                                         <th>IssueDate</th>
@@ -75,13 +76,20 @@ $id = $_SESSION['user'];
                                         foreach ($documents as $document) 
                                         {
                                             echo "<tr>";
+                                            echo "<td>" . $document['DocTitle'] . "</td>";
                                             echo "<td>" . $document['DocumentCode'] . "</td>";
                                             echo "<td>" . $document['UserId'] . "</td>";
                                             $temp = $document['IssueDate'] ;
                                             $newDate = date("d-m-Y", strtotime($temp));
                                             echo "<td>" . $newDate . "</td>";
-                                            echo "<td>" . $document['Status'] . "</td>";
-                                            echo "<td>" . $document['Type'] . "</td>";
+                                            $status = $document['Status'];
+                                            $query = "SElECT Value FROM Lookup WHERE id = $status";
+                                            $r = db::getRecord($query);
+                                            echo "<td>" . $r['Value'] . "</td>";
+                                            $status = $document['Type'];
+                                            $query = "SElECT Value FROM Lookup WHERE id = $status";
+                                            $r1 = db::getRecord($query);
+                                            echo "<td>" . $r1['Value'] . "</td>";
                                             $temp2 = $document['expiryDate'];
                                             $newDate = date("d-m-Y", strtotime($temp2));
                                             echo "<td>" . $newDate . "</td>";
